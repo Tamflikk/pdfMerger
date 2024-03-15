@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.15.13",
     "@mui/material": "^5.15.13",
     "@react-pdf/renderer": "^3.3.8",
+    "@vercel/analytics": "^1.2.2",
     "pdf-lib": "^1.17.1",
     "pdf-thumbnail": "^1.0.6",
     "pdf-to-img": "^2.1.2",

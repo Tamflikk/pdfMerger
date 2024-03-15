@@ -7,12 +7,12 @@ import {
   Box,
   Button,
   IconButton,
-  Tooltip
+  Tooltip,
 } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useLocation } from "react-router-dom";
 import { Document, Page, pdfjs } from "react-pdf";
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument } from "pdf-lib";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -61,23 +61,23 @@ const Merger = () => {
 
   const handleMergePDF = async () => {
     const combinedPdf = await PDFDocument.create();
-  
+
     for (const file of cards) {
       const fileData = await file.arrayBuffer();
       const pdf = await PDFDocument.load(fileData);
       const pages = await combinedPdf.copyPages(pdf, pdf.getPageIndices());
-      pages.forEach(page => combinedPdf.addPage(page));
+      pages.forEach((page) => combinedPdf.addPage(page));
     }
-  
+
     const mergedPdfFile = await combinedPdf.save();
-    const blob = new Blob([mergedPdfFile], { type: 'application/pdf' });
-    
+    const blob = new Blob([mergedPdfFile], { type: "application/pdf" });
+
     // Crear un enlace para descargar el PDF combinado
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = 'combined.pdf';
+    link.download = "combined.pdf";
     link.click();
-  
+
     // Limpiar el objeto URL
     URL.revokeObjectURL(link.href);
   };
@@ -101,7 +101,7 @@ const Merger = () => {
 
   const handleDeleteDocument = (index) => {
     setCards(cards.filter((_, i) => i !== index));
-  };  
+  };
 
   return (
     <>
@@ -151,75 +151,75 @@ const Merger = () => {
       </Box>
 
       <Box sx={{ flexGrow: 1, m: 3, width: "auto", maxWidth: "100%" }}>
-      <Grid
-  container
-  spacing={2}
-  justifyContent="flex-start"
-  alignItems="stretch"
->
-  {cards.map((file, index) => (
-    <Grid
-      item
-      key={index}
-      sm={6}
-      md={4}
-      lg={3}
-      xl={2}
-      draggable
-      onDragStart={(e) => handleDragStart(e, index)}
-      onDragOver={(e) => e.preventDefault()}
-      onDrop={handleDrop}
-      onDragEnter={(e) => handleDragOver(e, index)}
-      style={{ position: "relative" }}
-    >
-      <Card
-        raised
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minWidth: 220,
-          minHeight: 300,
-          height: 300,
-          borderRadius: 5,
-          opacity: draggedItem === index ? 0.5 : 1,
-          cursor: "grab",
-          '&:hover .delete-icon': { // Mostrar el botón al hacer hover
-            opacity: 1,
-          }
-        }}
-      >
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-            }}
-          >
-            <PDFPreview file={file} />
-          </Box>
-          <Tooltip title="Delete document" placement="top">
-            <IconButton
-              className="delete-icon"
-              sx={{
-                position: 'absolute',
-                top: 16,
-                left: 16,
-                opacity: 0, // Ocultar por defecto
-                transition: 'opacity 0.3s',
-              }}
-              onClick={() => handleDeleteDocument(index)}
+        <Grid
+          container
+          spacing={2}
+          justifyContent="flex-start"
+          alignItems="stretch"
+        >
+          {cards.map((file, index) => (
+            <Grid
+              item
+              key={index}
+              sm={6}
+              md={4}
+              lg={3}
+              xl={2}
+              draggable
+              onDragStart={(e) => handleDragStart(e, index)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={handleDrop}
+              onDragEnter={(e) => handleDragOver(e, index)}
+              style={{ position: "relative" }}
             >
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        </CardContent>
-      </Card>
-    </Grid>
-  ))}
-</Grid>
-
+              <Card
+                raised
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  minWidth: 220,
+                  minHeight: 300,
+                  height: 300,
+                  borderRadius: 5,
+                  opacity: draggedItem === index ? 0.5 : 1,
+                  cursor: "grab",
+                  "&:hover .delete-icon": {
+                    // Mostrar el botón al hacer hover
+                    opacity: 1,
+                  },
+                }}
+              >
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "100%",
+                    }}
+                  >
+                    <PDFPreview file={file} />
+                  </Box>
+                  <Tooltip title="Delete document" placement="top">
+                    <IconButton
+                      className="delete-icon"
+                      sx={{
+                        position: "absolute",
+                        top: 16,
+                        left: 16,
+                        opacity: 0, // Ocultar por defecto
+                        transition: "opacity 0.3s",
+                      }}
+                      onClick={() => handleDeleteDocument(index)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </>
   );
