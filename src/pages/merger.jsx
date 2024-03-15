@@ -137,7 +137,7 @@ const Merger = () => {
             onClick={handleAddDocuments}
             sx={{
               color: "white",
-              width: "40%",
+              width: "50%",
               borderColor: "white",
               "&:hover": {
                 borderColor: "white",
