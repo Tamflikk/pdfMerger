@@ -184,7 +184,6 @@ const Merger = () => {
                   opacity: draggedItem === index ? 0.5 : 1,
                   cursor: "grab",
                   "&:hover .delete-icon": {
-                    // Mostrar el botón al hacer hover
                     opacity: 1,
                   },
                 }}
