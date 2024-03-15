@@ -145,7 +145,7 @@ const Merger = () => {
               },
             }}
           >
-            Add Documents
+            Add Docs
           </Button>
         </Box>
       </Box>
