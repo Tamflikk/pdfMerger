@@ -120,7 +120,7 @@ const Merger = () => {
             onClick={handleMergePDF}
             sx={{
               color: "white",
-              width: "50%",
+              width: "49%",
               mr: 2,
               borderColor: "white",
               "&:hover": {
@@ -137,7 +137,7 @@ const Merger = () => {
             onClick={handleAddDocuments}
             sx={{
               color: "white",
-              width: "50%",
+              width: "49%",
               borderColor: "white",
               "&:hover": {
                 borderColor: "white",
