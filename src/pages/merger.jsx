@@ -208,6 +208,7 @@ const Merger = () => {
                         left: 16,
                         opacity: 0, // Ocultar por defecto
                         transition: "opacity 0.3s",
+                        border: 'none'
                       }}
                       onClick={() => handleDeleteDocument(index)}
                     >
