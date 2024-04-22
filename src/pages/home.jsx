@@ -48,7 +48,7 @@ const Home = () => {
           border: "2px dashed white",
           borderRadius: 5,
           py: 7,
-          px: 20,
+          width: '50%',
           cursor: "pointer",
           position: "fixed",
           top: "50%",
@@ -57,7 +57,7 @@ const Home = () => {
           transition: ".22s",
           "&:hover": {
             transition: ".22s",
-            px: 25,
+            width: '60%',
           },
         }}
       >
